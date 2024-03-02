@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+{% block header %}
+    <div class="text-box">
+        <h1>Car Parking Auto</h1>
+        <p>
+            Creating a sustainable and resilient future by embracing parking solutions. <br>
+            Making it faster to find parking in a large city
+        </p>
+        <a href="{{ url_for('about') }}" class="visit-btn">Visit Us To Find Out More</a>
+    </div>
+{% endblock header %}
+
+{% block content %}
+{% if current_user.is_authenticated %}
+    <div>
+        <h3>Your Parking:</h3>
+        <h4>Parking Duration:</h4>
+        <p id="result">Your total will appear here, once you have left the parking bay.</p>
+        <h4>Parking Costs:</h4>
+        <p id="result-cost">£0.00</p>
+    </span>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script>
+        function check_result() {
+            // send a GET request to the server to check for the result
+            fetch('/get_result')
+                .then(response => {
+                    if (response.status == 200) {
+                        // if the server returns a 200 status code, update the webpage with the result
+                        response.json().then(data => {
+                            document.getElementById('result').innerHTML = data.result + ' minutes';
+                            document.getElementById('result-cost').innerHTML = '£' + ((data.result/60) * 4).toFixed(2);
+                        });
+                    }
+                });
+        }
+
+        // call the check_result function every 5 seconds
+        setInterval(check_result, 5000);
+        </script>
+    <div class="parking-bay-wrapper">
+        <div class="section-col">
+            <h3>Reserve Parking Bay</h3>
+            <p>reserve the space</p>
+            <form class="booking-form" method="POST">
+                {{ form.csrf_token }}
+
+                {{ form.name.label }}{{ form.name }}
+
+                {{ form.phone.label }}{{ form.phone }}
+                {{ form.car_type.label }}{{ form.car_type }}
+                {{ form.parking_bay.label }}{{ form.parking_bay }}
+                {{ form.date.label }}{{ form.date }}
+
+                {{ form.time.label }}{{ form.time }}
+
+                {{ form.submit }}
+
+            </form>
+        </div>
+    </div>
+{% else %}
+<!-- prompt user to login before reserving -->
+    <div class="parking-bay-wrapper">
+        <div class="section-col">
+            <h3>Reserve Parking Bay</h3>
+            <p>reserve the space</p>
+            <p>Please login to reserve a parking bay</p>
+        </div>
+    </div>
+{% endif %}
+{% endblock content %}

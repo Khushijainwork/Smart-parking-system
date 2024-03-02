@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="with=device-width, initial-scale=1.0">
+        <title>{{ title }}</title>
+
+        <script src="{{ url_for('static', filename='jquery-3.6.0.min.js') }}"></script>
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="header">
+            <div class="Container">
+                <div class="nav-wrapper">
+                    <div class="left-side">
+                        <a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='img/CarIcon.svg') }}"></a>
+                    </div>
+
+                    <div class="right-side">
+                        <ul>
+                            <li><a href="{{ url_for('home') }}">Home</a></li>
+                            <li><a href="{{ url_for('about') }}">About</a></li>
+                            {% if current_user.is_authenticated %}
+                            <li><a href="{{ url_for('logout') }}">Logout {{ current_user.username }}</a></li>
+                            {% else %}
+                                <li><a href="{{ url_for('login') }}">Login</a></li>
+                                <li><a href="{{ url_for('signup') }}">Sign up</a></li>
+                            {% endif %}
+                            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="bulletin">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        <ul> {% for category, message in messages %}
+                            <li class="{{ category }}">{{ message }}</li>
+                        {% endfor %} </ul>
+                    {% endif %}
+                {% endwith %}
+
+                {% if form %}
+                    {% for field in form.errors %}
+                        <ul> {% for error in form[field].errors %}
+                            <li class="error">{{ error }}</li>
+                        {% endfor %} </ul>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            {% block header %}
+            {% endblock %}
+        </div>
+
+        <div id="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+
+        <div class="footer">
+            <div class="footer-content">
+                <div class="footer-section about">
+                    <h1 class="logo-text"><span>Car</span> Parking Auto</h1>
+                    <p>
+                        contact us at | <a href="{{ url_for('contact') }}" style="color: white;">Carparkingauto.co.uk</a>
+                    </p>
+                </div>
+                <div class="footer-section links"></div>
+            </div>
+            <div class="footer-bottom">
+                &copy; Carparkingauto.co.uk | designed by Ben Sparrow
+            </div>
+        </div>
+
+    </body>
+</html>
+

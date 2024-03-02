@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block header %}
+
+<div class="signup-wrapper">
+    <form class="signup-form" method="POST">
+        {{ form.csrf_token }}
+
+        <h1>Sign Up</h1>
+
+        <div class="signup-field">
+            {{ form.username_new(placeholder="Username") }}
+        </div>
+        <div class="signup-field">
+            {{ form.email(placeholder="Email address") }}
+        </div>
+        <div class="signup-field">
+            {{ form.password_new(placeholder="Password") }}
+        </div>
+        <div class="signup-field">
+            {{ form.password_confirm(placeholder="Confirm password") }}
+        </div>
+
+        {{ form.submit }}
+
+    </form>
+</div>
+
+{% endblock header %}

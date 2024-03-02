@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block header %}
+
+<div class="contact-wrapper">
+    <div class="Container">
+        <form>
+            <h1>Contact Us</h1>
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email address">
+
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" name="subject" placeholder="Enter the subject">
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" placeholder="Enter your message"></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock header %}

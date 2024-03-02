@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block header %}
+
+<div class="login-wrapper">
+    <form class="login-form" method="POST">
+        {{ form.csrf_token }}
+
+        <h1>Log In</h1>
+
+        <div class="login-field">
+            {{ form.username(placeholder="Username") }}
+        </div>
+        <div class="login-field">
+            {{ form.password(placeholder="Password") }}
+        </div>
+
+        {{ form.submit }}
+
+    </form>
+</div>
+
+{% endblock header %}
