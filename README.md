@@ -7,5 +7,5 @@ The application provides real-time information about parking availability, and t
 flask flask-socketio pyserial
 
 # Video Link
-The video representation of the project is accessible via the link provided below the project description .
+The video representation of the project is accessible via the link provided below the About section.
 
