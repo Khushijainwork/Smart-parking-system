@@ -6,4 +6,6 @@ The application provides real-time information about parking availability, and t
 # Requires
 flask flask-socketio pyserial
 
-![Smart Parking system](https://drive.google.com/file/d/1uCMUL9GHGNEhX3_gFKB-BI6ErYZfDEHx/view?usp=sharing)
+# Video Link
+The video representation of the project is accessible via the link provided below the project description .
+
