@@ -1,3 +1,5 @@
+#Title: Development of a Full-Stack IoT-Based Smart Parking System with Barrier Control and Real-Time Booking Management
+
 # Smart-parking-system
 This project aims to develop a full-stack IoT application that provides a smart parking system. The application allows the user to book a parking slot in advance using a web-based application developed using HTML and CSS. Once the booking is confirmed, a servo motor raises a barrier, allowing the user to park the vehicle. An ultrasound detector is installed at the parking slot, which senses the arrival of the car and sends a signal to the application. Upon leaving the parking slot, the barrier is lowered automatically, and the parking space becomes available for other users to book.
 Users can create an account in the web application and use a GUI to book a parking bay.
